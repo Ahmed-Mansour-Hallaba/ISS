@@ -1,0 +1,291 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Data;
+
+namespace projectsp
+{
+    class projectstored
+    {
+        SqlMethods sql = new SqlMethods();
+        public bool InsertNewBank(string bankname="-1")
+        {
+            return (bool) sql.sqlExecute("InsertNewBank", "'"+bankname+"','0'");
+        }
+        public bool InsertNewBranch(string branchname="-1",string bankname="-1",string phone1=" ",string phone2=" ",string fax=" ",string address=" ",string notes=" ")
+        {
+            return (bool) sql.sqlExecute("InsertNewBranch", "'" + branchname + "','" + bankname + "','" + phone1 + "','" + phone2 + "','" + fax+ "','" + address + "','" + notes + "','0'");
+        }
+        public bool InsertNewCar(string carname = "-1")
+        {
+            return (bool)sql.sqlExecute("InsertNewCar", "'" + carname + "','0'");
+        }
+        
+        public bool InsertNewCustomerGroup(string groupname = "-1")
+        {
+            return (bool)sql.sqlExecute("InsertNewCustomerGroupID", "'" + groupname + "','0'");
+        }
+
+        public bool InsertNewDelegate(string delegatename = "-1", int ratio = -1, string government = " ", string country = " ", string phone = " ", string mobile = " ", double salary=-1,string notes=" ")
+        {
+
+            return (bool)sql.sqlExecute("InsertNewDelegate", "'" + delegatename + "'," + ratio + ",'" + government + "','" + country + "','" + phone + "','" + mobile + "'," + salary+ ",'" + notes + "','0'");
+        }
+        public bool InsertNewDepartment(string departmentname = "-1", string mainmanagmentname = "-1")
+        {
+            return (bool)sql.sqlExecute("InsertNewDepartment", "'" + departmentname + "','" + mainmanagmentname + "','0'");
+        }
+
+        public bool InsertNewExpense(string expensename = "-1")
+        {
+            return (bool)sql.sqlExecute("InsertNewExpense", "'" + expensename + "','0'");
+        }
+
+        public bool InsertNewGroup(string name = "-1")
+        {
+            return (bool)sql.sqlExecute("InsertNewGroup", "'" + name + "','0'");
+        }
+        public bool InsertNewItemGroup(string name = "-1",string description=" ",string maingroupname="-1")
+        {
+            return (bool)sql.sqlExecute("InsertNewItemGroup", "'" + name + "','" + description + "','" + maingroupname + "','0'");
+        }
+        public bool InsertNewJopTitle(string name = "-1")
+        {
+            return (bool)sql.sqlExecute("InsertNewJopTitle", "'" + name + "','0'");
+        }
+        public bool InsertNewManagement(string name = "-1",string managername=" ")
+        {
+            return (bool)sql.sqlExecute("InsertNewManagement", "'" + name + "','" + managername + "','0'");
+        }
+        public bool InsertNewSubUnit(double value = 1,string unitname=" ")
+        {
+            return (bool)sql.sqlExecute("InsertNewSubUnit", "'" + value + "','" + unitname + "','0'");
+        }
+        public bool InsertNewUnit(string name = "-1")
+        {
+            return (bool)sql.sqlExecute("InsertNewUnit", "'" + name + "','0'");
+        }
+        public bool InsertNewUser(string username = "-1", string password = "-1", string code = " ", string phone = " " ,string address = " ", string notes = " ")
+        {
+            return (bool)sql.sqlExecute("InsertNewUser", "'" + username + "','" + password + "','" + code + "','" + phone + "','" + address + "','" + notes + "','0'");
+        }
+        public bool InsertNewVendor(string code = "-1", string name = "-1",  string government = " ", string country = " ",string address=" ", string phone = " ",string fax=" ", string mobile = " ", string zip = " ", string delegatename = " ", string email = " ", double limitedcredit = 0, string notes = " ")
+        {
+            return (bool)sql.sqlExecute("InsertNewVendor", "'" + code + "','" + name + "','" + government + "','" + country + "','" + address + "','" + phone + "','" + fax + "','" + mobile + "','" + zip + "','" + delegatename + "','" + email + "'," + limitedcredit + ",'" + notes + "','0'");
+        }
+        public void DeleteBank(string name)
+        {
+            sql.sqlExecute("UpdateBankState", "'" + name + "',1");
+        }
+
+        public void DeleteBranch(string branchname,string bankname)
+        {
+            sql.sqlExecute("UpdateBranchState", "'" + branchname + "','"+bankname+ "',1");
+        }
+
+        public void DeleteCar(string name)
+        {
+            sql.sqlExecute("UpdateCarState", "'" + name + "',1");
+        }
+
+        public void DeleteCustomerGroup(string name)
+        {
+            sql.sqlExecute("UpdateCustomerGroupState", "'" + name + "',1");
+        }
+
+        public void DeleteDelegate(string name)
+        {
+            sql.sqlExecute("UpdateDelegateState", "'" + name + "',1");
+        }
+
+        public void DeleteExpenseType(string name)
+        {
+            sql.sqlExecute("UpdateExpenseTypeState", "'" + name + "',1");
+        }
+
+        public void DeleteItemGroup(string itemname,string maingroupname)
+        {
+            sql.sqlExecute("UpdateItemGroupState", "'" + itemname + "','"+maingroupname+"',1");
+        }
+
+        public void DeleteJobtitle(string name)
+        {
+            sql.sqlExecute("UpdateJobtitleState", "'" + name + "',1");
+        }
+
+        public void DeleteMainDepartment(string name)
+        {
+            sql.sqlExecute("UpdateMainDepartmentState", "'" + name + "',1");
+        }
+
+        public void DeleteMainGroup(string name)
+        {
+            sql.sqlExecute("UpdateMainGroupState", "'" + name + "',1");
+        }
+
+        public void DeleteMainManagement(string name)
+        {
+            sql.sqlExecute("UpdateMainManagementState", "'" + name + "',1");
+        }
+
+        public void DeleteMainUnit(string name)
+        {
+            sql.sqlExecute("UpdateMainUnitState", "'" + name + "',1");
+        }
+
+        public void DeleteSubUnit(string name)
+        {
+            sql.sqlExecute("UpdateSubUnitState", "'" + name + "',1");
+        }
+
+        public void DeleteUser(string name)
+        {
+            sql.sqlExecute("UpdateUserState", "'" + name + "',1");
+        }
+
+        public void DeleteVendor(string name,string mobile)
+        {
+            sql.sqlExecute("UpdateVendorState", "'" + name + "','"+mobile+"',1");
+        }
+
+        public DataTable GetBank(string s=" ")
+        {
+            SqlDataAdapter check = new SqlDataAdapter(sql.command("select * from getBanks('" + s + "')"));
+            DataTable Dt = new DataTable();
+            check.Fill(Dt);
+            return Dt;
+        }
+
+        public DataTable GetBranches(string s=" ")
+        {
+            SqlDataAdapter check = new SqlDataAdapter(sql.command("select * from getBranches('" + s + "')"));
+            DataTable Dt = new DataTable();
+            check.Fill(Dt);
+            return Dt;
+        }
+
+        public DataTable GetCars(string s=" ")
+        {
+            SqlDataAdapter check = new SqlDataAdapter(sql.command("select * from getCars('" + s + "')"));
+            DataTable Dt = new DataTable();
+            check.Fill(Dt);
+            return Dt;
+        }
+
+        public DataTable GetCustomerGroups(string s=" ")
+        {
+            SqlDataAdapter check = new SqlDataAdapter(sql.command("select * from getCustomerGroups('" + s + "')"));
+            DataTable Dt = new DataTable();
+            check.Fill(Dt);
+            return Dt;
+        }
+
+        public DataTable GetDelegate(string s=" ")
+        {
+            SqlDataAdapter check = new SqlDataAdapter(sql.command("select * from getDelegate('" + s + "')"));
+            DataTable Dt = new DataTable();
+            check.Fill(Dt);
+            return Dt;
+        }
+
+        public DataTable GetExpenseType(string s=" ")
+        {
+            SqlDataAdapter check = new SqlDataAdapter(sql.command("select * from getExpenseType('" + s + "')"));
+            DataTable Dt = new DataTable();
+            check.Fill(Dt);
+            return Dt;
+        }
+
+        public DataTable GetItemGroup(string s=" ")
+        {
+            SqlDataAdapter check = new SqlDataAdapter(sql.command("select * from getItemGroup('" + s + "')"));
+            DataTable Dt = new DataTable();
+            check.Fill(Dt);
+            return Dt;
+        }
+
+        public DataTable GetJobTitles(string s=" ")
+        {
+            SqlDataAdapter check = new SqlDataAdapter(sql.command("select * from getJobTitles('" + s + "')"));
+            DataTable Dt = new DataTable();
+            check.Fill(Dt);
+            return Dt;
+        }
+
+        public DataTable GetMainDepartment(string s=" ")
+        {
+            SqlDataAdapter check = new SqlDataAdapter(sql.command("select * from getMainDepartment('" + s + "')"));
+            DataTable Dt = new DataTable();
+            check.Fill(Dt);
+            return Dt;
+        }
+
+        public DataTable GetMainGroup(string s=" ")
+        {
+            SqlDataAdapter check = new SqlDataAdapter(sql.command("select * from getMainGroup('" + s + "')"));
+            DataTable Dt = new DataTable();
+            check.Fill(Dt);
+            return Dt;
+        }
+
+        public DataTable GetMainManagement(string s=" ")
+        {
+            SqlDataAdapter check = new SqlDataAdapter(sql.command("select * from getMainManagement('" + s + "')"));
+            DataTable Dt = new DataTable();
+            check.Fill(Dt);
+            return Dt;
+        }
+
+        public DataTable GetSubUnit(string s=" ")
+        {
+            SqlDataAdapter check = new SqlDataAdapter(sql.command("select * from getSubUnit('" + s + "')"));
+            DataTable Dt = new DataTable();
+            check.Fill(Dt);
+            return Dt;
+        }
+
+        public DataTable GetUnit(string s=" ")
+        {
+            SqlDataAdapter check = new SqlDataAdapter(sql.command("select * from getUnit('" + s + "')"));
+            DataTable Dt = new DataTable();
+            check.Fill(Dt);
+            return Dt;
+        }
+
+        
+
+        public DataTable GetVendor(string s=" ")
+        {
+            SqlDataAdapter check = new SqlDataAdapter(sql.command("select * from getVendor('" + s + "')"));
+            DataTable Dt = new DataTable();
+            check.Fill(Dt);
+            return Dt;
+        }
+
+
+        //13 october update user table
+        public DataTable GetTableAttributes(string tablename=" ")
+        {
+            SqlDataAdapter check = new SqlDataAdapter(sql.command("select * from getTableAttributes('" + tablename + "')"));
+            DataTable Dt = new DataTable();
+            check.Fill(Dt);
+            return Dt;
+        }
+        public bool UpdateUser(string username = "-1", string password = "-1", string code = " ", string phone = " ", string address = " ", string notes = " ")
+        {
+            return (bool)sql.sqlExecute("UpdateUser", "'" + username + "','" + password + "','" + code + "','" + phone + "','" + address + "','" + notes + "','0'");
+        }
+
+        public DataTable GetUser(string key="1",string value="1",bool exact=false)
+        {
+            SqlDataAdapter check = new SqlDataAdapter(sql.command("getUsersData '"+key+"','"+value+"',"+exact+""));
+            DataTable Dt = new DataTable();
+            check.Fill(Dt);
+            return Dt;
+        }
+
+    }
+}
